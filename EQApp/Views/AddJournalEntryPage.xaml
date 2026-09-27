@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EQApp.Views.AddJournalEntryPage"
+             Title="Новая запись"
+             BackgroundColor="#F8F9FA">
+
+	<ScrollView>
+		<VerticalStackLayout Spacing="15" Padding="20">
+
+			<!-- Выбор настроения -->
+			<Label Text="Как вы себя чувствуете?"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"/>
+
+			<Picker x:Name="MoodPicker"
+					Title="Выберите настроение"
+					BackgroundColor="#FFFFFF"
+					TextColor="#2C3E50"
+					TitleColor="#6C757D"
+					Margin="0">
+				<Picker.Items>
+                    <x:String>Великолепно</x:String>
+                    <x:String>Счастлив</x:String>
+                    <x:String>Хорошо</x:String>
+                    <x:String>Нейтрально</x:String>
+                    <x:String>Грустно</x:String>
+                    <x:String>Злюсь</x:String>
+                    <x:String>Тревожно</x:String>
+                    <x:String>Устал</x:String>
+				</Picker.Items>
+			</Picker>
+
+			<!-- Оценка настроения -->
+			<Label Text="Оцените настроение (1-10)"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   Margin="0,10,0,0"/>
+
+			<Slider x:Name="MoodSlider"
+                    Minimum="1"
+                    Maximum="10"
+                    Value="5"
+                    ThumbColor="#4A90E2"
+                    MinimumTrackColor="#4A90E2"/>
+
+			<Label x:Name="SliderValueLabel"
+                   Text="5 / 10"
+                   FontSize="14"
+                   FontAttributes="Bold"
+                   TextColor="#4A90E2"
+                   HorizontalOptions="Center"/>
+
+			<!-- Какие эмоции -->
+			<Label Text="Какие эмоции вы испытываете?"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   Margin="0,10,0,0"/>
+
+			<Entry x:Name="EmotionsEntry"
+                   Placeholder="Например: радость, спокойствие, волнение..."
+                   BackgroundColor="#FFFFFF"
+                   TextColor="#2C3E50"
+                   PlaceholderColor="#6C757D"/>
+
+			<!-- Ситуация -->
+			<Label Text="Что произошло?"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   Margin="0,10,0,0"/>
+
+			<Editor x:Name="SituationEditor"
+                    Placeholder="Опишите ситуацию, которая вызвала эти эмоции..."
+                    HeightRequest="100"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#2C3E50"
+                    PlaceholderColor="#6C757D"/>
+
+			<!-- Рефлексия -->
+			<Label Text="Ваши мысли и рефлексия"
+                   FontSize="16"
+                   FontAttributes="Bold"
+                   TextColor="#2C3E50"
+                   Margin="0,10,0,0"/>
+
+			<Editor x:Name="ReflectionEditor"
+                    Placeholder="Что вы думаете об этом? Что вы узнали о себе?"
+                    HeightRequest="100"
+                    BackgroundColor="#FFFFFF"
+                    TextColor="#2C3E50"
+                    PlaceholderColor="#6C757D"/>
+
+			<!-- Кнопка сохранения -->
+			<Button Text="Сохранить запись"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Margin="0,20,0,0"
+                    Clicked="OnSaveClicked"/>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

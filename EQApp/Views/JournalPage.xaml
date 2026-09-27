@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EQApp.Views.JournalPage"
+             Title="Дневник эмоций"
+             BackgroundColor="#F8F9FA">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- Верхняя панель с кнопкой добавления -->
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*,Auto"
+              Padding="15,10">
+            <Label Text="Дневник эмоций"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   TextColor="#1A2980"
+                   VerticalOptions="Center"/>
+
+            <Button x:Name="AddButton"
+                    Grid.Column="1"
+                    Text="+ Новая"
+                    BackgroundColor="#4A90E2"
+                    TextColor="White"
+                    FontSize="12"
+                    CornerRadius="10"
+                    HeightRequest="35"
+                    Clicked="OnAddClicked"/>
+        </Grid>
+
+        <!-- Список записей -->
+        <CollectionView x:Name="EntriesListView"
+                        Grid.Row="1"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Border BackgroundColor="#FFFFFF"
+                                StrokeShape="RoundRectangle 15"
+                                Padding="15"
+                                Margin="10,5"
+                                StrokeThickness="0">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <Grid ColumnDefinitions="Auto,*,Auto"
+                                      Grid.Column="0">
+                                    <Label Text="{Binding MoodEmoji}"
+                                           FontSize="30"
+                                           VerticalOptions="Center"/>
+
+                                    <VerticalStackLayout Grid.Column="1"
+                                                          Margin="12,0,0,0"
+                                                          Spacing="4">
+                                        <Label Text="{Binding MoodText}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="#2C3E50"/>
+                                        <Label Text="{Binding Situation}"
+                                               FontSize="14"
+                                               TextColor="#6C757D"
+                                               LineBreakMode="WordWrap"
+                                               MaxLines="2"/>
+                                        <Label Text="{Binding Date, StringFormat='{0:dd.MM.yyyy HH:mm}'}"
+                                               FontSize="12"
+                                               TextColor="#ADB5BD"/>
+                                    </VerticalStackLayout>
+
+                                    <Label Grid.Column="2"
+                                           Text="{Binding MoodRating, StringFormat='{0}/10'}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           TextColor="#4A90E2"
+                                           VerticalOptions="Center"/>
+                                </Grid>
+
+                                <!-- Маленькая кнопка крестик -->
+                                <Button Grid.Column="1"
+                                        Text="✕"
+                                        BackgroundColor="#DC3545"
+                                        TextColor="White"
+                                        CornerRadius="15"
+                                        WidthRequest="15"
+                                        HeightRequest="15"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="End"
+                                        VerticalOptions="Start"
+                                        Margin="5,0,0,0"
+                                        Clicked="OnDeleteEntryClicked"
+                                        CommandParameter="{Binding .}"/>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Панель статистики -->
+        <Border Grid.Row="2"
+                BackgroundColor="#FFFFFF"
+                StrokeShape="RoundRectangle 15,15,0,0"
+                Padding="15"
+                StrokeThickness="0">
+            <Grid ColumnDefinitions="*,*,*">
+                <VerticalStackLayout HorizontalOptions="Center">
+                    <Label Text="Среднее настроение"
+                           FontSize="12"
+                           TextColor="#6C757D"/>
+                    <Label x:Name="AvgMoodLabel"
+                           Text="0"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1"
+                                     HorizontalOptions="Center">
+                    <Label Text="Всего записей"
+                           FontSize="12"
+                           TextColor="#6C757D"/>
+                    <Label x:Name="TotalEntriesLabel"
+                           Text="0"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="2"
+                                     HorizontalOptions="Center">
+                    <Label Text="Самое частое"
+                           FontSize="12"
+                           TextColor="#6C757D"/>
+                    <Label x:Name="MostFrequentMoodLabel"
+                           Text="—"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </Border>
+
+    </Grid>
+</ContentPage>

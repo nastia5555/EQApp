@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EQApp.Views.ExercisePage"
+             Title="Упражнение"
+             BackgroundColor="#F8F9FA">
+
+	<ScrollView>
+		<VerticalStackLayout Spacing="15" Padding="20">
+
+			<!-- Информация об упражнении -->
+			<Border StrokeThickness="0"
+                    BackgroundColor="#4A90E2"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="15">
+				<VerticalStackLayout Spacing="8">
+					<Label x:Name="CategoryLabel"
+                           Text="Самоосознание"
+                           FontSize="14"
+                           TextColor="White"/>
+					<Label x:Name="TitleLabel"
+                           Text="Колесо эмоций"
+                           FontSize="22"
+                           FontAttributes="Bold"
+                           TextColor="White"/>
+					<Label x:Name="DurationLabel"
+                           Text="7 минут"
+                           FontSize="14"
+                           TextColor="White"
+                           Opacity="0.9"/>
+				</VerticalStackLayout>
+			</Border>
+
+			<!-- Описание и инструкция -->
+			<Border StrokeThickness="0"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="15">
+				<VerticalStackLayout Spacing="10">
+					<Label Text="Что нужно делать"
+                           FontSize="16"
+                           FontAttributes="Bold"/>
+					<Label x:Name="InstructionLabel"
+                           Text="Выберите эмоцию и опишите ощущения"
+                           FontSize="14"
+                           TextColor="#6C757D"/>
+				</VerticalStackLayout>
+			</Border>
+
+			<!-- Динамическое содержимое (зависит от типа упражнения) -->
+			<Border x:Name="ContentBorder"
+                    StrokeThickness="0"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 15"
+                    Padding="15"
+                    IsVisible="False">
+				<VerticalStackLayout x:Name="DynamicContent"
+                                     Spacing="12"/>
+			</Border>
+
+			<!-- Кнопка завершения -->
+			<Button x:Name="CompleteButton"
+                    Text="Завершить и получить результат"
+                    BackgroundColor="#4CAF50"
+                    TextColor="White"
+                    FontSize="16"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    IsVisible="False"
+                    Clicked="OnCompleteClicked"/>
+
+			<!-- Прогресс -->
+			<ProgressBar x:Name="ProgressBar"
+                         Progress="0"
+                         HeightRequest="4"
+                         ProgressColor="#4A90E2"
+                         IsVisible="False"/>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

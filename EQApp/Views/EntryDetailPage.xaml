@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EQApp.Views.EntryDetailPage"
+             Title="Детали записи"
+             BackgroundColor="#F8F9FA">
+
+	<ScrollView>
+		<VerticalStackLayout Spacing="15" Padding="20">
+
+			<Border BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    StrokeThickness="0">
+				<VerticalStackLayout Spacing="12">
+
+					<Grid ColumnDefinitions="Auto,Auto" ColumnSpacing="10">
+						<Label x:Name="MoodEmojiLabel"
+                               FontSize="40"/>
+						<Label x:Name="MoodTextLabel"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#2C3E50"
+                               VerticalOptions="Center"
+                               Grid.Column="1"/>
+					</Grid>
+
+					<Label x:Name="MoodRatingLabel"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"/>
+
+					<Label Text="Дата"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"/>
+					<Label x:Name="DateLabel"
+                           FontSize="14"
+                           TextColor="#555555"/>
+
+					<Label Text="Эмоции"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"
+                           Margin="0,5,0,0"/>
+					<Label x:Name="EmotionsLabel"
+                           FontSize="14"
+                           TextColor="#555555"/>
+
+					<Label Text="Ситуация"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"
+                           Margin="0,5,0,0"/>
+					<Label x:Name="SituationLabel"
+                           FontSize="14"
+                           TextColor="#555555"
+                           LineBreakMode="WordWrap"/>
+
+					<Label Text="Рефлексия"
+                           FontSize="14"
+                           FontAttributes="Bold"
+                           TextColor="#2C3E50"
+                           Margin="0,5,0,0"/>
+					<Label x:Name="ReflectionLabel"
+                           FontSize="14"
+                           TextColor="#555555"
+                           LineBreakMode="WordWrap"/>
+
+				</VerticalStackLayout>
+			</Border>
+
+		</VerticalStackLayout>
+	</ScrollView>
+</ContentPage>

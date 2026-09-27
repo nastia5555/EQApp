@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EQApp.Views.MainPage"
+             Title=""
+             BackgroundColor="#F8F9FA"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- ВЕРХНЯЯ ПЕРЕЛИВАЮЩАЯСЯ ШАПКА -->
+        <Border Grid.Row="0"
+                StrokeThickness="0"
+                HeightRequest="220">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0,1">
+                    <GradientStop Color="#1A2980" Offset="0" />
+                    <GradientStop Color="#26D0CE" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VerticalStackLayout Padding="20,50,20,20"
+                                 Spacing="8">
+                <Label Text="Эмоциональный интеллект"
+                       FontSize="14"
+                       TextColor="White"
+                       Opacity="0.8"/>
+                <Label Text="Добро пожаловать!"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       TextColor="White"/>
+                <Label x:Name="EQLevelLabel"
+                       Text="Пройдите тест, чтобы узнать свой EQ"
+                       FontSize="14"
+                       TextColor="White"
+                       Opacity="0.9"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ -->
+        <ScrollView Grid.Row="1"
+                    Margin="0,-30,0,0">
+            <VerticalStackLayout Spacing="15" Padding="15">
+
+                <!-- КАРТОЧКА С КНОПКАМИ -->
+                <Border StrokeThickness="0"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="20"
+                        Margin="0,0,0,5">
+                    <VerticalStackLayout Spacing="12">
+
+                        <Button Text="Практика EQ"
+                                BackgroundColor="#26A69A"
+                                TextColor="White"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                CornerRadius="15"
+                                HeightRequest="55"
+                                Clicked="OnExercisesClicked"/>
+
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                            <Button Text="Тест на EQ"
+                                    BackgroundColor="#4A90E2"
+                                    TextColor="White"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    CornerRadius="15"
+                                    HeightRequest="55"
+                                    Clicked="OnEQTestClicked"/>
+                            <Button Text="Дневник эмоций"
+                                    BackgroundColor="#5C6BC0"
+                                    TextColor="White"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    CornerRadius="15"
+                                    HeightRequest="55"
+                                    Grid.Column="1"
+                                    Clicked="OnJournalClicked"/>
+                        </Grid>
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- КАРТОЧКА СТАТИСТИКИ -->
+                <Border StrokeThickness="0"
+        BackgroundColor="White"
+        StrokeShape="RoundRectangle 20"
+        Padding="20"
+        Margin="0,0,0,10">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Моя статистика"
+               FontSize="16"
+               FontAttributes="Bold"
+               TextColor="#1A2980"/>
+
+                        <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+                            <!-- 4 колонки вместо 3 -->
+
+                            <!-- 1. Пройдено тестов -->
+                            <Border BackgroundColor="#E8F0FE"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="8">
+                                <VerticalStackLayout Spacing="2"
+                                     HorizontalOptions="Center">
+                                    <Label Text=""
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                                    <Label Text="Тестов"
+                           FontSize="10"
+                           TextColor="#6C757D"
+                           HorizontalOptions="Center"/>
+                                    <Label x:Name="TestsCountLabel"
+                           Text="0"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- 2. Средний EQ -->
+                            <Border BackgroundColor="#E8F0FE"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="8">
+                                <VerticalStackLayout Spacing="2"
+                                     HorizontalOptions="Center">
+                                    <Label Text=""
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                                    <Label Text="Средний EQ"
+                           FontSize="10"
+                           TextColor="#6C757D"
+                           HorizontalOptions="Center"/>
+                                    <Label x:Name="AverageEQLabel"
+                           Text="0"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- 3. Записей в дневнике -->
+                            <Border BackgroundColor="#E8F0FE"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="8">
+                                <VerticalStackLayout Spacing="2"
+                                     HorizontalOptions="Center">
+                                    <Label Text=""
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                                    <Label Text="Записей"
+                           FontSize="10"
+                           TextColor="#6C757D"
+                           HorizontalOptions="Center"/>
+                                    <Label x:Name="JournalCountLabel"
+                           Text="0"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <!-- 4. НОВАЯ КАРТОЧКА: Выполнено упражнений -->
+                            <Border BackgroundColor="#E8F0FE"
+                    StrokeShape="RoundRectangle 12"
+                    Padding="8">
+                                <VerticalStackLayout Spacing="2"
+                                     HorizontalOptions="Center">
+                                    <Label Text=""
+                           FontSize="18"
+                           HorizontalOptions="Center"/>
+                                    <Label Text="Упражнений"
+                           FontSize="10"
+                           TextColor="#6C757D"
+                           HorizontalOptions="Center"/>
+                                    <Label x:Name="ExercisesCountLabel"
+                           Text="0"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#4A90E2"
+                           HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </Border>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- КАРТОЧКА РЕКОМЕНДУЕМЫХ УПРАЖНЕНИЙ -->
+                <Border StrokeThickness="0"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="20"
+                        Margin="0,0,0,10">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Рекомендуемые упражнения"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#1A2980"/>
+
+                        <Button x:Name="QuickEmotionExercise"
+                                Text="Колесо эмоций"
+                                BackgroundColor="#E8F0FE"
+                                TextColor="#4A90E2"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                CornerRadius="12"
+                                HeightRequest="45"
+                                Clicked="OnQuickExerciseClicked"/>
+
+                        <Button x:Name="QuickEmpathyExercise"
+                                Text="Эмпатическое слушание"
+                                BackgroundColor="#E8F0FE"
+                                TextColor="#4A90E2"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                CornerRadius="12"
+                                HeightRequest="45"
+                                Clicked="OnQuickExerciseClicked"/>
+
+                        <Button x:Name="QuickStressExercise"
+                                Text="Техники заземления"
+                                BackgroundColor="#E8F0FE"
+                                TextColor="#4A90E2"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                CornerRadius="12"
+                                HeightRequest="45"
+                                Clicked="OnQuickExerciseClicked"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- КАРТОЧКА ПОСЛЕДНЕЙ ЗАПИСИ -->
+                <Border x:Name="LatestEntryFrame"
+                        StrokeThickness="0"
+                        BackgroundColor="White"
+                        StrokeShape="RoundRectangle 20"
+                        Padding="20"
+                        IsVisible="False">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Последняя запись"
+                               FontSize="14"
+                               TextColor="#6C757D"/>
+                        <Label x:Name="LatestMoodLabel"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1A2980"/>
+                        <Label x:Name="LatestEntryText"
+                               FontSize="14"
+                               TextColor="#6C757D"
+                               LineBreakMode="WordWrap"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- ИНДИКАТОР ЗАГРУЗКИ -->
+        <Grid x:Name="LoadingIndicator"
+              Grid.Row="0"
+              Grid.RowSpan="3"
+              BackgroundColor="#FFFFFF"
+              IsVisible="False">
+            <ActivityIndicator IsRunning="True"
+                               Color="#4A90E2"
+                               Scale="2"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>
